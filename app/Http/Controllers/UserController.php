@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Country;
+use App\Models\Lineitem;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -11,11 +12,12 @@ class UserController extends Controller
     public function userProfile(Request $request){
         $user = auth()->user();
         $countries = Country::all();
+        $lineitems = Lineitem::where('user_id', $user->id)->orderBy('id', 'DESC')->get();
         // echo "<pre>";
-        // print_r($user->profile);
+        // print_r($lineitems);
         // exit;
 
-        return view('user_profile',compact('user', 'countries'));
+        return view('user_profile',compact('user', 'countries', 'lineitems'));
     }
 
 

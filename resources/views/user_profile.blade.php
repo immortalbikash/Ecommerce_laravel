@@ -117,63 +117,23 @@
                                 <th scope="col">Product</th>
                                 <th scope="col">Date</th>
                                 <th scope="col">Price</th>
-                                <th scope="col">Shipping Charge</th>
                                 <th scope="col">Quantity</th>
                                 <th scope="col">Total</th>
                                 <th scope="col">Status</th>
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
-                                <td scope="row">1</td>
-                                <td>Titan Watch</td>
-                                <td>17-02-2022</td>
-                                <td>₹1000</td>
-                                <td>₹00</td>
-                                <td>5</td>
-                                <td>₹5000</td>
-                                <td>Delivered</td>
-                            </tr>
-                            <tr>
-                                <td scope="row">2</td>
-                                <td>Police Watch</td>
-                                <td>17-02-2022</td>
-                                <td>₹1000</td>
-                                <td>₹00</td>
-                                <td>5</td>
-                                <td>₹5000</td>
-                                <td>Attempted Delivery</td>
-                            </tr>
-                            <tr>
-                                <td scope="row">3</td>
-                                <td>Rolex Watch</td>
-                                <td>17-02-2022</td>
-                                <td>₹1000</td>
-                                <td>₹00</td>
-                                <td>5</td>
-                                <td>₹5000</td>
-                                <td>Confirmed</td>
-                            </tr>
-                            <tr>
-                                <td scope="row">4</td>
-                                <td>Tag Heuer Watch</td>
-                                <td>17-02-2022</td>
-                                <td>₹1000</td>
-                                <td>₹00</td>
-                                <td>5</td>
-                                <td>₹5000</td>
-                                <td>Out for delivery</td>
-                            </tr>
-                            <tr>
-                                <td scope="row">5</td>
-                                <td>Titan Watch</td>
-                                <td>17-02-2022</td>
-                                <td>₹1000</td>
-                                <td>₹00</td>
-                                <td>5</td>
-                                <td>₹5000</td>
-                                <td>On its way</td>
-                            </tr>
+                                @foreach ($lineitems as $lineitem)
+                                    <tr>
+                                        <td scope="row">{{ $loop->iteration }}</td>
+                                        <td>{{ $lineitem->productData->name }}</td>
+                                        <td>{{ $lineitem->created_at }}</td>
+                                        <td>{{ $lineitem->price }}</td>
+                                        <td>{{ $lineitem->quantity }}</td>
+                                        <td>{{ $lineitem->total_price }}</td>
+                                        <td>{{ $lineitem->orderData->status }}</td>
+                                    </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>

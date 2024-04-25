@@ -21,7 +21,7 @@
                 <div class="sb-nav-link-icon"><i class="fa fa-archive" aria-hidden="true"></i></div>
                 Products
             </a>
-            <a class="nav-link" href="index.html">
+            <a class="nav-link" href="{{ route('orders_list') }}">
                 <div class="sb-nav-link-icon"><i class="fa fa-truck" aria-hidden="true"></i></div>
                 Orders
             </a>

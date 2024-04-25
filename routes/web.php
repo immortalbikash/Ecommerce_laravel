@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthenticationController;
 use App\Http\Controllers\BrandsController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
 use Faker\Guesser\Name;
@@ -44,6 +45,7 @@ Route::controller(AuthenticationController::class)->group(function (){
 });
 
 Route::resource('cart', CartController::class);
+Route::post('add-to-cart', [CartController::class, 'addToCart'])->name('add_to_cart');
 Route::get('store-order', [CartController::class, 'storeOrder'])->name('store_order');
 
 Route::controller(UserController::class)->group(function (){
@@ -70,6 +72,12 @@ Route::group(['prefix' => '/admin', 'middleware' => ['checkRoles']], function ()
     Route::controller(BrandsController::class)->group(function (){
         Route::post('/change-brand-image/{id}', 'changeBrandImage')->name('admin_brand_image_change');
         Route::get('/change-brand-status/{id}/{status?}', 'changeBrandStatus')->name('admin_change_brand_status');
+    });
+
+    Route::controller(OrderController::class)->group(function (){
+        Route::get('/orders', 'index')->name('orders_list');
+        Route::post('/change-order-status/{id}', 'changeOrderStatus')->name('admin_change_order_status');
+        Route::get('/lineitems/{id}', 'getLineItems')->name('get_line_items');
     });
 
     Route::resource('product', ProductController::class);
